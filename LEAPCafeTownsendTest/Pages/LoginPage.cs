@@ -7,9 +7,9 @@ namespace LeapCafeTownsendTest.Pages
     class LoginPage : AbstractPage
     {
         const string LOGIN_FORM_ID = "#login-form";
-        const string USER_NAME_CSS = LOGIN_FORM_ID + "input[ng-model='user.name']";
-        const string USER_PASSWORD_CSS = LOGIN_FORM_ID + "input[ng-model='user.password']";
-        const string SUBMIT_CSS = LOGIN_FORM_ID + "button[type='submit']";
+        const string USER_NAME_CSS = LOGIN_FORM_ID + " input[ng-model='user.name']";
+        const string USER_PASSWORD_CSS = LOGIN_FORM_ID + " input[ng-model='user.password']";
+        const string SUBMIT_CSS = LOGIN_FORM_ID + " button[type='submit']";
 
         [FindsBy(How = How.CssSelector, Using = USER_NAME_CSS)]
         IWebElement _Login;
