@@ -64,11 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomationFramework.cs" />
-    <Compile Include="CreateUserTest.cs" />
+    <Compile Include="CreateEmployeeTest.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="Pages\AbstractPage.cs" />
     <Compile Include="Pages\EmployeeDetailsPage.cs" />
-    <Compile Include="Pages\EmployeesPage.cs" />
+    <Compile Include="Pages\EmployeeListPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="People\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
