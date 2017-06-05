@@ -13,8 +13,10 @@ namespace LeapCafeTownsendTest.Pages
 
         [FindsBy(How = How.CssSelector, Using = USER_NAME_CSS)]
         IWebElement _Login;
+
         [FindsBy(How = How.CssSelector, Using = USER_PASSWORD_CSS)]
         IWebElement _Password;
+
         [FindsBy(How = How.CssSelector, Using = SUBMIT_CSS)]
         IWebElement _Submit;
 
@@ -38,10 +40,10 @@ namespace LeapCafeTownsendTest.Pages
             return this;
         }
 
-        public EmployeesPage SubmitLogin()
+        public EmployeeListPage SubmitLogin()
         {
             _Submit.Click();
-            return PageFactory.InitElements<EmployeesPage>(_Driver);
+            return PageFactory.InitElements<EmployeeListPage>(_Driver);
         }
 
         public LoginPage SubmitLoginExpectingFailure()
@@ -50,7 +52,7 @@ namespace LeapCafeTownsendTest.Pages
             return PageFactory.InitElements<LoginPage>(_Driver);
         }
 
-        public EmployeesPage LoginAs(string username, string password)
+        public EmployeeListPage LoginAs(string username, string password)
         {
             TypeUserName(username);
             TypeUserPassword(password);
