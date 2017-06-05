@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace LeapCafeTownsendTest.Pages
 {
@@ -19,7 +21,7 @@ namespace LeapCafeTownsendTest.Pages
         [FindsBy(How = How.Id, Using = EDIT_EMPLOYEE_ID)]
         IWebElement EditEmployeeButton;
 
-        [FindsBy(How = How.Id, Using = EDIT_EMPLOYEE_ID)]
+        [FindsBy(How = How.Id, Using = DELETE_EMPLOYEE_ID)]
         IWebElement DeleteEmployeeButton;
 
         IWebElement EmployeeList
@@ -28,6 +30,11 @@ namespace LeapCafeTownsendTest.Pages
         }
 
         public EmployeeListPage(IWebDriver driver) : base(driver) { }
+
+        public string GreetingText
+        {
+            get { return _Driver.FindElement(By.Id(GREETING_ID)).Text; }
+        }
 
         public bool IsEmployeeListPage()
         {
@@ -49,10 +56,34 @@ namespace LeapCafeTownsendTest.Pages
             return PageFactory.InitElements<EmployeeDetailsPage>(_Driver);
         }
 
-        public EmployeeListPage DeleteEmployee()
+        public EmployeeListPage DeleteEmployee(bool ack)
         {
             DeleteEmployeeButton.Click();
+
+            IAlert alert = _Driver.SwitchTo().Alert();
+
+            if (ack)
+            {
+                alert.Accept();
+            }
+            else
+                alert.Dismiss();
+
             return PageFactory.InitElements<EmployeeListPage>(_Driver);
+        }
+
+        public EmployeeListPage SelectEmployee(string fullName)
+        {
+            var listEntry = EmployeeList.FindElement(
+                    By.XPath(string.Format("./li[contains(text(),'{0}')]", fullName)));
+
+            if (listEntry.Text != fullName)
+            {
+                throw new Exception(String.Format("Employee '{0}' not found.", fullName));
+            }
+
+            listEntry.Click();
+            return this;
         }
 
         public bool EmployeeListContainsEmployee(string fullName)

@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="AutomationFramework.cs" />
     <Compile Include="CreateEmployeeTest.cs" />
+    <Compile Include="DeleteEmployeeTest.cs" />
+    <Compile Include="People\Employee.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="Pages\AbstractPage.cs" />
     <Compile Include="Pages\EmployeeDetailsPage.cs" />

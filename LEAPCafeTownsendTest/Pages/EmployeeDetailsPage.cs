@@ -2,6 +2,8 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
+using LeapCafeTownsendTest.People;
+
 namespace LeapCafeTownsendTest.Pages
 {
     class EmployeeDetailsPage : AbstractPage
@@ -91,6 +93,16 @@ namespace LeapCafeTownsendTest.Pages
         {
             CancelButton.Click();
             return PageFactory.InitElements<EmployeeListPage>(_Driver);
+        }
+
+        public EmployeeListPage AddEmployee(Employee employee)
+        {
+            SetFirstName(employee.FirstName);
+            SetLastName(employee.LastName);
+            SetStartDate(employee.StartDate);
+            SetEmail(employee.Email);
+
+            return ClickAddEmployee();
         }
     }
 }

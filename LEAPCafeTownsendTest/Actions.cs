@@ -23,5 +23,15 @@ namespace LeapCafeTownsendTest
             var luke = Person.LukeSkywalker;
             return loginPage.LoginAs(luke.UserName, luke.Password);
         }
+
+        public EmployeeListPage LoginAsLukeAndCreateEmployee(Employee employee)
+        {
+            var loginPage = _Framework.GetLoginPage();
+            var luke = Person.LukeSkywalker;
+            var employeeListPage = loginPage.LoginAs(luke.UserName, luke.Password);
+
+            var employeeDetailsPage = employeeListPage.AddEmployee();
+            return employeeDetailsPage.AddEmployee(employee);
+        }
     }
 }

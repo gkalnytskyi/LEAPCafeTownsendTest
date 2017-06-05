@@ -30,6 +30,7 @@ namespace LeapCafeTownsendTest
             var luke = Person.LukeSkywalker;
             var employeePage = loginPage.LoginAs(luke.UserName, luke.Password);
             employeePage.IsEmployeeListPage().Should().BeTrue();
+            employeePage.GreetingText.Should().Be("Hello Luke");
         }
     }
 }
