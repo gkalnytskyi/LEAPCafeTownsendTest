@@ -40,5 +40,22 @@ namespace LeapCafeTownsendTest
             // Assert
             employeeListPage.EmployeeListContainsEmployee(employee.FullName).Should().BeFalse();
         }
+
+        [Test]
+        public void EmployeeRemovedFromTheListAfterDeleteOnEditPage()
+        {
+            // Arrange
+            var employee = Employee.GetNewEmployeeEntry();
+            var employeeListPage = _Actions.LoginAsLukeAndCreateEmployee(employee);
+
+            // Act
+            employeeListPage.SelectEmployee(employee.FullName);
+            var employee_details = employeeListPage.EditEmployee();
+
+            employeeListPage = employee_details.ClickDeleteEmployee(true);
+
+            // Assert
+            employeeListPage.EmployeeListContainsEmployee(employee.FullName).Should().BeFalse();
+        }
     }
 }

@@ -53,10 +53,16 @@ namespace LeapCafeTownsendTest
                 {
                     if (Driver != null)
                     {
-                        Driver.Close();
-                        Driver.Quit();
-                        Driver.Dispose();
-                        Driver = null;
+                        try
+                        {
+                            Driver.Close();
+                        }
+                        finally
+                        {
+                            Driver.Quit();
+                            Driver.Dispose();
+                            Driver = null;
+                        }
                     }
                 }
 

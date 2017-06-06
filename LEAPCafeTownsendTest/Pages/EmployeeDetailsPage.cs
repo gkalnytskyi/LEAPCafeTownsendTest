@@ -17,7 +17,7 @@ namespace LeapCafeTownsendTest.Pages
         const string BACK_CSS = "a.bBack";
         const string CREATE_XPATH = "//button[@type='submit' and text()='Add']";
         const string UPDATE_XPATH = "//button[@type='submit' and text() ='Update']";
-        const string DELETE_CSS = "p.main-button";
+        const string DELETE_CSS = "div.formFooter p.main-button";
 
         [FindsBy(How = How.CssSelector, Using = FIRST_NAME_CSS)]
         IWebElement FirstName;
@@ -77,9 +77,19 @@ namespace LeapCafeTownsendTest.Pages
             return PageFactory.InitElements<EmployeeListPage>(_Driver);
         }
 
-        public EmployeeListPage ClickDeleteEmployee()
+        public EmployeeListPage ClickDeleteEmployee(bool ack)
         {
             DeleteButton.Click();
+
+            IAlert alert = _Driver.SwitchTo().Alert();
+
+            if (ack)
+            {
+                alert.Accept();
+            }
+            else
+                alert.Dismiss();
+
             return PageFactory.InitElements<EmployeeListPage>(_Driver);
         }
 
